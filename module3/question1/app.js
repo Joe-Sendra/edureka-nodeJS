@@ -69,7 +69,31 @@ app.get('/getemployeedetails', (req,res) => {
         fetch('http://localhost:3000/project')
     ])
     .then(responses => Promise.all(responses.map(res => res.json())))
-    .then(data => res.send(data));
+    .then(data => {
+        let employeeDetails = new Array;
+        // Now have to link any projects to employees
+        const [employeeData, projectData] = data;
+        employeeData
+            .forEach(employee => {
+                let employeeDetail = {
+                    _id: employee._id,
+                    name: employee.name,
+                    dateOfHire: employee.DateOfHire,
+                    email: employee.email,
+                    projects: []
+                }
+                const projectId = employee.projectId;
+                projectData
+                    .forEach(project => {
+                        if (projectId === project._id) {
+                            employeeDetail.projects.push(project);
+                        }
+                    })
+                employeeDetails.push(employeeDetail)
+            });
+        return employeeDetails;
+    })
+    .then(employeeDetails => res.send(employeeDetails));
     });
 
 // Create server to listen on port
