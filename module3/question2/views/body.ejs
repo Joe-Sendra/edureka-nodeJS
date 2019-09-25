@@ -1,0 +1,14 @@
+<table>
+    <thead>
+        <th>Name</th>
+        <th>Id</th>
+        <th>Created At</th>
+    </thead>
+<%for(let i=0; i<employees.length;i++){%>
+    <tr>
+        <td><%=employees[i].Name%></td>
+        <td><%=employees[i].Id%></td>
+        <td><%=employees[i].CreatedAt%></td>
+    </tr>    
+<%}%>
+</table>
