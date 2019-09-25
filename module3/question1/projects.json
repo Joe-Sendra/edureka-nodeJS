@@ -1,0 +1,44 @@
+[
+    {
+      "_id": "5ab12612f36d2879268f284a",
+      "projectName": "Alpha",
+      "startDate": "01/01/2019",
+      "estEndDate": "06/30/2019"
+    },
+    {
+      "_id": "5ab12666f36d2879268f2902",
+      "projectName": "Beta",
+      "startDate": "07/01/2019",
+      "estEndDate": "12/31/2019"
+    },
+    {
+      "_id": "5ab12678f36d2879268f291d",
+      "projectName": "Zulu",
+      "startDate": "07/01/2019",
+      "estEndDate": "11/31/2019"
+    },
+    {
+      "_id": "5ab126b6f36d2879268f2943",
+      "projectName": "Jedi",
+      "startDate": "08/01/2019",
+      "estEndDate": "12/31/2019"
+    },
+    {
+      "_id": "5ab4e66b0c1d2b27846c6407",
+      "projectName": "Office",
+      "startDate": "01/01/2020",
+      "estEndDate": "12/31/2020"
+    },
+    {
+      "_id": "5ab12686f36d2879268f2930",
+      "projectName": "Monk",
+      "startDate": "02/01/2020",
+      "estEndDate": "05/31/2020"
+    },
+    {
+      "_id": "5ab12698f36d2879268f293e",
+      "projectName": "Hawk",
+      "startDate": "01/01/2021",
+      "estEndDate": "12/31/2021"
+    }
+  ]
