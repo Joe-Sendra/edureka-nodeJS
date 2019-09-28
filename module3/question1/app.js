@@ -94,7 +94,7 @@ app.get('/getemployeedetails', (req,res) => {
         return employeeDetails;
     })
     .then(employeeDetails => res.send(employeeDetails));
-    });
+});
 
 // Create server to listen on port
 app.listen(port,(err) => {
