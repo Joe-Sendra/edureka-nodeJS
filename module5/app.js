@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const db = mongoose.connect('mongodb://127.0.0.1:27017/module5data');
-const user = require('./models/usermodel');
+const order = require('./models/ordermodel');
 const bodyParser = require('body-parser');
 
 const app = express();
@@ -18,13 +18,23 @@ app.set('view engine', 'ejs');
 app.set('views', './views');
 
 app.get('/', (req, res) => {
-    res.render('index.ejs');
-})
-
-app.get('/add', (req, res) => {
-    res.render('admin');
+    order.find().then(orders => {
+        res.render('index.ejs', {orders: orders});
+    }); 
 });
 
+app.get('/add', (req, res) => {
+    res.render('admin', {errorMsg:'',successMsg:''});
+});
+
+app.post('/addData', (req, res) => {
+    order.create(req.body, (err, data) => {
+        if(err)
+            res.status(500).render('admin', {errorMsg: 'Something went wrong ' + err,successMsg:''});
+        else
+            res.status(200).render('admin',{errorMsg:'',successMsg: 'Order successfully added'});
+    });
+});
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);

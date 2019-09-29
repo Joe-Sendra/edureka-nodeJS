@@ -6,9 +6,45 @@
     <body>
         <% include partials/menu %>
         <div class="container">
-            <div class="jumbotron">
-                Home page!
+            <h2>Orders</h2>
+            <div class="table-responsive">
+                <table class="table table-hover table-striped id=orderTable">
+                    <caption>List of orders</caption>
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Email</th>
+                            <th>Size</th>
+                            <th>Qty</th>
+                            <th>Order Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i=0; i<orders.length; i++) {%>
+                            <tr>
+                                <td><%= orders[i].name %></td>
+                                <td><%= orders[i].address %></td>
+                                <td><%= orders[i].email %></td>
+                                <td><%= orders[i].itemSize %></td>
+                                <td><%= orders[i].itemQty %></td>
+                                <td><%= orders[i].date.toDateString() %></td>
+                                <td>
+                                    <% if (((Date.now() - orders[i].date) / (1000 * 3600 * 24)) < 1) { %>
+                                    In Progress
+                                    <%} else if (((Date.now() - orders[i].date) / (1000 * 3600 * 24)) < 2) { %>
+                                    Dispatched
+                                    <%} else if (((Date.now() - orders[i].date) / (1000 * 3600 * 24)) >= 2) { %>
+                                    Delivered
+                                    <% } %>
+                                </td>
+                            </tr>                            
+                        <% } %>
+                    </tbody>
+                </table>
             </div>
+
         </div>
     </body>
     <% include partials/script %>
