@@ -12,6 +12,7 @@
                     <caption>List of orders</caption>
                     <thead class="thead-dark">
                         <tr>
+                            <th></th>
                             <th>Name</th>
                             <th>Address</th>
                             <th>Email</th>
@@ -24,13 +25,14 @@
                     <tbody>
                         <% for(var i=0; i<orders.length; i++) {%>
                             <tr>
+                                <td><button type="button" class="email btn btn-warning" data-target="#emailModal" id="<%= orders[i]._id %>">Send Email</button></td>
                                 <td><%= orders[i].name %></td>
                                 <td><%= orders[i].address %></td>
                                 <td><%= orders[i].email %></td>
                                 <td><%= orders[i].itemSize %></td>
                                 <td><%= orders[i].itemQty %></td>
                                 <td><%= orders[i].date.toDateString() %></td>
-                                <td>
+                                <td>                                    
                                     <% if (((Date.now() - orders[i].date) / (1000 * 3600 * 24)) < 1) { %>
                                     In Progress
                                     <%} else if (((Date.now() - orders[i].date) / (1000 * 3600 * 24)) < 2) { %>
@@ -46,6 +48,30 @@
             </div>
 
         </div>
+        <div class="modal fade" id="emailModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-tital">Send Email Details</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <h2>Verify email</h2>
+                            <form action="/sendOrderEmail" method="POST" id="sendOrderEmail">
+                                <div class="form-group">
+                                    <label for="name">Name:</label>
+                                    <input type="text" class="form-control" id="email_name" name="name" required>
+                                </div>                               
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" id="send_email" class="btn btn-primary">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="js/email.js"></script>
     </body>
-    <% include partials/script %>
 </html>

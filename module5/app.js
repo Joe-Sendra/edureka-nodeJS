@@ -36,6 +36,45 @@ app.post('/addData', (req, res) => {
     });
 });
 
+app.get('/orders', (req, res) => {
+    order.find((err, data) => {
+        if(err)
+            res.status(500).send(err);
+        else
+            res.status(200).send(data);        
+    });
+});
+
+app.get('/orders/:id', (req, res) => {
+    order.findById(req.params.id).then(order => {
+        if (order) {
+            res.status(200).json(
+              {
+                _id: order._id,
+                email: order.email,
+                address: order.address,
+                itemSize: order.itemSize,
+                itemQty: order.itemQty,
+                date: order.date
+              }
+            );
+        } else {
+        res.status(404).json({message: 'Order not found!'});
+        }
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({
+            message: 'Fetching order failed!',
+            error: err
+        });
+    });
+});
+
+app.post('/sendOrderEmail', (req, res) => {
+    res.status(200).send(req.body);
+});
+
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
