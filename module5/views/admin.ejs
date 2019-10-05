@@ -7,7 +7,7 @@
         <% include partials/menu %>
         <div class="container">
             <h2>Add order</h2>
-            <form action="/addData" method="POST">
+            <form id="addOrderForm" action="/addData" method="POST">
                 <div class="form-group">
                     <label for="name">Name:</label>
                     <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name" required>
@@ -38,22 +38,12 @@
                         <option value="5">5</option>
                     </select>
                 </div>                
-                <button type="submit" class="btn btn-primary" role="button">Add</button>
+                <button type="submit" id="addOrder" class="btn btn-primary" role="button">Add</button>
                 <a href="/" class="btn btn-success" role="button">Cancel</a>
             </form>
         </div>
         <br>
-        <div class="container">
-            <% if (successMsg != '') { %>
-                <div class="alert alert-success" role="alert">
-                    <%= successMsg %>
-                </div>
-            <% } %>
-            <% if (errorMsg != '') { %>
-                <div class="alert alert-danger" role="alert">
-                    <%= errorMsg %>
-                </div>
-            <% } %>
-        </div>   
+        <% include partials/alert %>
+        <script type="text/javascript" src="js/addOrder.js"></script>
     </body>
 </html>

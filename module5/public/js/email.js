@@ -1,5 +1,4 @@
 var id;
-var to_be_emailed;
 
 $(document).ready(()=>{
     $('.email').on('click',(e) => {
@@ -18,9 +17,32 @@ $(document).ready(()=>{
                 } else if (dateDiff >= 2) {
                     order.status = "Delivered"
                 }
-                console.log("Need to use Sendgrid to email data", order, dateDiff, orderDate.getTime(), Date.now());
-                },
-            error: function(){
+                $.ajax({
+                    type: 'POST',
+                    url: '/sendOrderEmail',                    
+                    data: {order},
+                    success: (data)=>{
+                        if (data.errorMsg) {
+                            $('#errorMessage').css('display','block');
+                        } else {
+                            $('#errorMessage').css('display','none');
+                            $('#errorMessage').text(data.errorMsg);
+                        }
+                        if (data.successMsg) {
+                            $('#successMessage').css('display','block');
+                            $('#successMessage').text(data.successMsg);
+                        } else {
+                            $('#successMessage').css('display','none');
+                        }
+                        
+                        
+                    },
+                    error: ()=>{
+                        console.log("Error: Can not send email");
+                    }
+                })
+            },
+            error: ()=>{
                 alert('No data');
             }
         });
