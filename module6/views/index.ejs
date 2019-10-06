@@ -23,13 +23,19 @@
                     </thead>
                     <tbody>
                         <% for(var i=0; i<bugs.length; i++) {%>
+                            <% if (Math.floor((bugs[i].dateTime - Date.now()) / (1000 * 3600 * 24) + 4) <=0) {%>
+                            <tr class="overdueBug">
+                            <% } else { %>
                             <tr>
+                            <% } %>
                                 <td><%= bugs[i].title %></td>
                                 <td><%= bugs[i].description %></td>
                                 <td><%= bugs[i].assignee %></td>
-                                <td><%= bugs[i].dateTime.toDateString() %></td>
-                                <td><%= bugs[i].dateTime.toTimeString() %></td>
-                                <td>(todo days left)</td>
+                                <td><%= bugs[i].dateTime.toLocaleDateString() %></td>
+                                <td><%= bugs[i].dateTime.toLocaleTimeString() %></td>
+                                <td>
+                                    <%= Math.floor((bugs[i].dateTime - Date.now()) / (1000 * 3600 * 24) + 4) %>
+                                </td>
                             </tr>                            
                         <% } %>
                     </tbody>
