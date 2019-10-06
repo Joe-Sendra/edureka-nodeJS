@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <% include partials/head %>     
+    </head>
+    <body>
+        <% include partials/menu %>
+        <div class="container">
+            <h2>Add order</h2>
+            <form id="addBugForm" action="/addBug" method="POST">
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input type="text" class="form-control" id="title" placeholder="Enter Title" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <input type="textarea" class="form-control" id="description" placeholder="Enter description" name="description" required>
+                </div>
+                <div class="form-group">
+                    <label for="assignee">Assigned by:</label>
+                    <input type="assignee" class="form-control" id="assignee" placeholder="Enter assignee" name="assignee" required>
+                </div>              
+                <button type="submit" id="addBug" class="btn btn-primary" role="button">Add</button>
+                <a href="/" class="btn btn-success" role="button">Cancel</a>
+            </form>
+        </div>
+        <br>
+        <% include partials/alert %>
+        <script type="text/javascript" src="js/addBug.js"></script>
+    </body>
+</html>

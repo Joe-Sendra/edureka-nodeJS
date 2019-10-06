@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <% include partials/head %>     
+    </head>
+    <body>
+        <% include partials/menu %>
+        <% include partials/alert %>
+        <div class="container">
+            <h2>Bugs</h2>
+            <div class="table-responsive">
+                <table id="bugTable" class="table table-hover table-striped">
+                    <caption>List of bugs</caption>
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Assignee</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Days left to fix</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i=0; i<bugs.length; i++) {%>
+                            <tr>
+                                <td><%= bugs[i].title %></td>
+                                <td><%= bugs[i].description %></td>
+                                <td><%= bugs[i].assignee %></td>
+                                <td><%= bugs[i].dateTime.toDateString() %></td>
+                                <td><%= bugs[i].dateTime.toTimeString() %></td>
+                                <td>(todo days left)</td>
+                            </tr>                            
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <script type="text/javascript" src="js/bugTable.js"></script>
+    </body>
+</html>
