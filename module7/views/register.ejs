@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <% include partials/head %>     
+    </head>
+    <body>
+        <% include partials/menu %>
+        <% include partials/alert %>
+        <div class="container">
+            <h2>Register</h2>
+            <form id="registerForm" action="/api/auth/register" method="POST">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter Email" name="email" required>
+                </div>              
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" id="password" placeholder="Enter Password" name="password" required>
+                </div>
+                <button type="submit" id="register" class="btn btn-primary" role="button">Add</button>
+                <a href="/" class="btn btn-success" role="button">Cancel</a>
+            </form>
+            Have an account? <a href="/">Login</a>
+        </div>
+    </body>
+</html>
