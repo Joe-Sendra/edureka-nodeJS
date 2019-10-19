@@ -29,8 +29,15 @@ exports.getAddProduct = (req, res, next) => {
 };
 
 exports.showProducts = (req, res, next) => {
-    Product.find({}, (err, products)=>{
-        if (err) return res.status(500).send("Can not fetch products");
-        res.status(200).render('partials/product', {products: products, errorMsg: null, successMsg: null});
-    });
+    console.log(req.body);
+    var isViewOnly = req.body.viewonly;
+    try {
+        Product.find({}, (err, products)=>{
+            if (err) return res.status(500).send("Can not fetch products");
+            res.status(200).render('partials/product', {products: products, viewonly: isViewOnly, errorMsg: null, successMsg: null});
+        });   
+    } catch (error) {
+        console.log(error);
+    }
+
 };

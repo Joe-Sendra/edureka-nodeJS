@@ -18,6 +18,6 @@ router.post('/', checkAuth, checkAdmin, ProductController.addProduct);
 router.get('/addProduct', checkAuth, checkAdmin, ProductController.getAddProduct);
 
 // /api/products/list
-router.get('/list', ProductController.showProducts);
+router.post('/list', ProductController.showProducts);
 
 module.exports = router;

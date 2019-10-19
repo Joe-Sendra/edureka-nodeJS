@@ -2,7 +2,9 @@
     <h2>Product List</h2>
     <table id="availableProductsTable" class="table table-hover table-striped">
         <thead>
-            <th><!-- Need boolean to display column for add to cart button --></th>
+            <% if (viewonly === 'false') { %>
+                <th></th>
+            <% } %>
             <th>Id</th>
             <th>Product</th>
             <th>Description</th>
@@ -13,7 +15,9 @@
         <tbody>
             <% for(var i=0; i<products.length; i++) {%>
                 <tr>
-                    <td><!-- Need boolean to display add to cart button --></td>
+                    <% if (viewonly === 'false') { %>
+                        <th><button class="addProductToCart" id="<%= products[i]._id %>">Add</button></th>
+                    <% } %>                                      
                     <td><%= products[i]._id %></td>
                     <td><%= products[i].product %></td>
                     <td><%= products[i].data.description %></td>

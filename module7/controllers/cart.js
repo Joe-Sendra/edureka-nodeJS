@@ -1,6 +1,7 @@
 const Cart = require('../models/cart');
 
 exports.addItemCart = (req, res, next) => {
+    console.log(req.body);
     if (req.userData.type === 'Admin' || req.userData.id === req.body.cartOwner) {
         // Check to see if cart exists
         Cart.findOne({ owner: req.body.cartOwner }, (err, cart) => {

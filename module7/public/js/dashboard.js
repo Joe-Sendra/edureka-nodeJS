@@ -57,8 +57,9 @@ $(document).ready(()=>{
         });
         $('#btnViewProducts').on('click',()=>{
             $.ajax({
-                type: 'GET',
+                type: 'POST',
                 url: '/api/products/list',
+                data:  {viewonly : true},
                 success: (productHTML)=>{
                     $('#dashBody').html(productHTML);
                 },
@@ -82,23 +83,24 @@ $(document).ready(()=>{
             headers: {Authorization: 'Bearer ' + localStorage.getItem('token')},
             data:  {ownerID: localStorage.getItem('id')},
             success: (cartHTML)=>{
-                $('#dashBody').html(cartHTML);
+                $('#dashBody').html(`<div id="cartDiv">${cartHTML}</div>`);
+                $.ajax({
+                    type: 'POST',
+                    url: '/api/products/list',
+                    data:  {viewonly : false},
+                    success: (productHTML)=>{
+                        $('#dashBody').append(`<div id="productDiv">${productHTML}</div>`);
+                    },
+                    error: (err)=>{
+                        console.log(err);
+                    }
+                })
             },
             error: (err)=>{
                 console.log(err);
             }
-        }).done(
-            $.ajax({
-                type: 'GET',
-                url: '/api/products/list',
-                success: (productHTML)=>{
-                    $('#dashBody').append(productHTML);
-                },
-                error: (err)=>{
-                    console.log(err);
-                }
-            })            
-        );
+        });
     };
+    
 });
 
