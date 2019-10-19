@@ -1,3 +1,5 @@
+const TOKEN_EXPIRATION_IN = 60 * 15; // Number of seconds that new JWT is valid before expiring
+
 const bcrypt = require('bcryptjs');
 
 const User = require('../models/user');
@@ -20,7 +22,7 @@ exports.authUser = (req, res, next) => {
         } else {
             const passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
             if (!passwordIsValid) return res.status(401).send({ auth: false, token: null});
-            var token = jwt.sign({ id: user._id, type: user.type}, config.secret, {expiresIn: 900 });
+            var token = jwt.sign({ id: user._id, type: user.type}, config.secret, {expiresIn: TOKEN_EXPIRATION_IN });
             res.json({id: user._id, token: token});
         }
     });

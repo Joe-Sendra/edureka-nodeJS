@@ -14,7 +14,11 @@ module.exports = (req, res, next) => {
       throw new Error('HTTP request authorization header is not in the correct format');
     }
   } catch (error) {
-    console.log(error);
+    if (error.name = 'TokenExpiredError') {
+      res.render('index',{errorMsg: 'Your session has ended, please log in to continue', successMsg: null});
+    } else {
+      console.log(error);
+    }
     res.status(401).json({ message: 'You are not authenticated!'});
   }
 

@@ -10,7 +10,7 @@ const checkAdmin = require('../middleware/check-admin');
 
 const router = express.Router();
 
-// /api/cart/addCart
+// /api/cart/addItemCart
 router.post('/addItemCart', checkAuth, CartController.addItemCart);
 
 // /api/cart/:ownerID
