@@ -21,18 +21,33 @@
   <body>
     <ul id="messages"></ul>
     <form action="">
-      <input id="m" autocomplete="off" /><button>Send</button>
+        <div id="setUserInput"><input id="setUsernameTxt" placeholder="Enter your chat name" /><button id="btnSetUsername">Enter Chat</button></div>
+        <div id="sendMessageInput" style="display: none;"><input id="m" autocomplete="off" /><button id="btnSendMessage">Send</button></div>
     </form>
     <script src="/socket.io/socket.io.js"></script>
     <script>
         $(() => {
             var socket = io();
-            $('form').submit(function(e){
+            $('#btnSetUsername').on('click', (e)=>{
+                e.preventDefault(); // prevents page reloading
+                socket.emit('set username', $('#setUsernameTxt').val());
+            });
+            $('#btnSendMessage').on('click', (e)=>{
                 e.preventDefault(); // prevents page reloading
                 socket.emit('chat message', $('#m').val());
                 $('#m').val('');
                 return false;
             });
+            var user;
+            socket.on('userExists', (username) => {
+                $('#messages').append($('<li>').text(username));
+            });
+            socket.on('userSet', (data) => {
+                user = data.username;
+                $('#messages').append($('<li>').text(user + ' is set as your username'));
+                $('#setUserInput').css('display', 'none');
+                $('#sendMessageInput').css('display', 'block');
+            });                        
             socket.on('chat message', (msg)=>{
                 $('#messages').append($('<li>').text(msg));
             });
