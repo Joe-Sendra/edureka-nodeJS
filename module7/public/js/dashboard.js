@@ -83,7 +83,7 @@ $(document).ready(()=>{
             headers: {Authorization: 'Bearer ' + localStorage.getItem('token')},
             data:  {ownerID: localStorage.getItem('id')},
             success: (cartHTML)=>{
-                $('#dashBody').html(`<div id="cartDiv">${cartHTML}</div>`);
+                $('#dashBody').html(`<div id="cartDiv">${cartHTML}</div><br><hr><br>`);
                 $.ajax({
                     type: 'POST',
                     url: '/api/products/list',

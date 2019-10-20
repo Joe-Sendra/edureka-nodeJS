@@ -39,13 +39,10 @@ exports.getCart = (req, res, next) => {
             res.status(200).send({cart});
         });
     } else {
-        console.log("userData: ", req.userData);
-        console.log("params: ", req.params);
         res.status(401).json({ message: 'You are not authorized!'});
     }         
 };
 
-// TODO clean up code to work for both normal and admin users (from dashboard load or button click)
 exports.showCart = (req, res, next) => {
     try {
         if (req.userData.type === 'Admin' || req.userData.id === req.body.ownerID) {
