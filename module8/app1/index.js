@@ -10,7 +10,10 @@ io.on('connection', (socket)=>{
     console.log('+++ a user has connected +++');
     socket.on('disconnect', ()=>{
         console.log('--- a user has disconnected ---');
-    });    
+    });
+    socket.on('chat message', (msg) => {
+        console.log('message: ' + msg);
+    });       
 });
 
 http.listen(3000, function(){
