@@ -1,0 +1,23 @@
+<script type="text/javascript" src="/js/addProduct.js"></script>
+<div class="container">
+    <h2>Add Product</h2>
+    <% include alert %>
+    <form id="addProductForm">
+        <div class="form-group">
+            <label for="product">Product:</label>
+            <input type="text" class="form-control" id="product" placeholder="Enter product" name="product" required>
+        </div>
+        <div class="form-group">
+            <label for="size">Data:</label>
+            <input type="text" class="form-control" id="size" placeholder="Enter size" name="size" required>
+            <input type="text" class="form-control" id="color" placeholder="Enter color" name="color" required>
+            <input type="text" class="form-control" id="description" placeholder="Enter product description" name="description" required>
+        </div>
+        <div class="form-group">
+            <label for="price">Price:</label>
+            <input type="text" class="form-control" id="price" placeholder="Enter price" name="price" required>
+        </div>                               
+        <button type="submit" id="addProduct" class="btn btn-primary" role="button">Add</button>
+    </form>
+</div>
+    
