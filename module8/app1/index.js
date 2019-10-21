@@ -21,7 +21,8 @@ io.on('connection', (socket)=>{
          }        
     });    
     socket.on('chat message', (msg) => {
-        io.emit('chat message', (getFormattedTimestamp() + ' ' + socketUsername + ':  ' + msg));
+        var timeUser = getFormattedTimestamp() + ' ' + socketUsername + ':  ';
+        io.emit('chat message', ( {stamp: timeUser, message: msg} ));
     });
     socket.on('disconnect', ()=>{
         console.log('--- ' + socketUsername + ' has disconnected ---');

@@ -45,11 +45,15 @@
             socket.on('userSet', (data) => {
                 user = data.username;
                 $('#messages').append($('<li>').text(user + ' is set as your username'));
-                $('#setUserInput').css('display', 'none');
+                // $('#setUserInput').css('display', 'none');
+                $('#setUserInput').remove();
                 $('#sendMessageInput').css('display', 'block');
+                $('#m').focus();
             });                        
-            socket.on('chat message', (msg)=>{
-                $('#messages').append($('<li>').text(msg));
+            socket.on('chat message', (data)=>{
+                $('#messages').append(
+                    $('<li>').html(`<b>${data.stamp}</b> ${data.message}`)
+                );
             });
         });
     </script>    
