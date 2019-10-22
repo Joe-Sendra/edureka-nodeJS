@@ -22,6 +22,8 @@ describe('POST /tasks', () => {
         .send({ name: 'TASK NAME', text: 'TESTING TASK TEST'})
         .then((res) => {
             const body = res.body;
+            const status = res.status;
+            expect(status).to.equal(201);
             expect(body).to.contain.property('_id');
             expect(body).to.contain.property('name');
             expect(body).to.contain.property('text');
@@ -30,11 +32,13 @@ describe('POST /tasks', () => {
         .catch((err) => done(err));
     });
 
-    it('Fail, note requires text', (done) => {
+    it('Fail, task requires text', (done) => {
         request(app).post('/tasks')
         .send({ name: 'TASK NAME'})
         .then((res) => {
             const body = res.body;
+            const status = res.status;
+            expect(status).to.equal(400);
             expect(body.errors.text.name).to.equal('ValidatorError');
             done();
         })
