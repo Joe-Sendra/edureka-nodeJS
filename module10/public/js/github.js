@@ -5,7 +5,7 @@ $('#btnLookupUser').on('click', (e)=>{
         type: 'GET',
         url: `/api/v1/${GIT_USERNAME}`,
         success: (userInfo) => {
-            $('#gitHubUserInfo').text(JSON.stringify(userInfo));
+            $('#gitHubUserInfo').html(`<h3>Data received from API below</h3> ${JSON.stringify(userInfo)}`);
         },
         error: (err) => {
             console.log(err);
