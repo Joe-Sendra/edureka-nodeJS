@@ -5,9 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Module10-Github Lookup</title>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <h2> Temp landing page for GitHub user info lookup</h2>
-    
+    <div class="container" style="text-align: center; width: 50%; margin-top: 100px;">
+        <h2 style="text-align: center;">GitHub user info lookup</h2>
+        <form>
+            <div class="form-group">
+                <input class="form-control" style="min-width: 175px;" type="text" id="gitHubUser" name="gitHubUser" placeholder="Enter GitHub username" />
+            </div>
+                <button class="btn btn-primary" style="min-width: 75px; width: 50%;" type="submit" id="btnLookupUser">Lookup</button>
+        </form>
+    </div>
+    <div class="container" id="gitHubUserInfo">
+
+    </div>
+    <script type="text/javascript" src="js/github.js"></script>
 </body>
 </html>
