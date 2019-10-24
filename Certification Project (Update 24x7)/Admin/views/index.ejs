@@ -7,18 +7,46 @@
         <!-- TODO <%# include partials/menu %>
         <%# include partials/alert %> -->
         <div class="container">
-            <h2>Login</h2>
-            <form id="loginForm" action="/api/v1/auth/login" method="POST">
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter Email" name="email" required>
-                </div>              
-                <div class="form-group">
-                    <label for="password">Password:</label>
-                    <input type="password" class="form-control" id="password" placeholder="Enter Password" name="password" required>
+            <div class="row">
+                <div class="col-md-6 mb-5">
+                    <h4>REGISTER</h4>
+                    <form id="registerForm" action="/api/v1/users" method="POST">
+                        <div class="form-group">
+                                <label for="name">Name:</label>
+                                <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name" required>
+                            </div>                         
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" class="form-control" id="regEmail" placeholder="Enter Email" name="email" required>
+                        </div>              
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" class="form-control" id="regPassword" placeholder="Enter Password" name="password" required>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" id="btnLogin" class="btn btn-info" role="button">REGISTER</button>
+                            <button type="reset" id="btnResetLogin" class="btn btn-warning" role="button">RESET</button>
+                        </div>
+                    </form>
                 </div>
-                <button type="submit" id="register" class="btn btn-primary" role="button">Login</button>
-            </form>
+                <div class="col-md-6">
+                    <h4>LOG IN</h4>
+                    <form id="loginForm" action="/api/v1/auth/login" method="POST">
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter Email" name="email" required>
+                        </div>              
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" class="form-control" id="password" placeholder="Enter Password" name="password" required>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" id="btnLogin" class="btn btn-success" role="button">Log In</button>
+                            <button type="reset" id="btnResetLogin" class="btn btn-danger" role="button">RESET</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </body>
 </html>
