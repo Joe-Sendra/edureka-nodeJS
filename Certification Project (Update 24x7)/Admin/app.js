@@ -22,6 +22,9 @@ const db = mongoose.connect(config.db, {
     useCreateIndex: true
  });
 
+// Required for paths on frontend
+app.use(express.static(__dirname+'/public'));
+
 // Use ejs as the template engine
 app.set('view engine', 'ejs');
 app.set('views', './views');
@@ -29,6 +32,12 @@ app.set('views', './views');
 // Import Routes
 const authRoutes = require('./routes/routeAuth');
 const userRoutes = require('./routes/routeUser');
+
+// Middleware for application/json
+app.use(bodyParser.json());
+
+// Middleware for URL encoded
+app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.get('/', (req, res) => res.render('index')); // Landing Page
