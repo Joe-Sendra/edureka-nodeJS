@@ -23,12 +23,11 @@ app.get('/api/v1/:gitUsername', (req, res, next) => {
     .then(response => response.json())
     .then(gitUserData => {
         res.status(200).json(gitUserData)
-      console.log(gitUserData)
     })
     .catch(err => console.log(err));
 
 });
 
-app.listen(3000, 'localhost', ()=>{
+app.listen(3000, '0.0.0.0', ()=>{
     console.log('Listening on port 3000...');
 });
