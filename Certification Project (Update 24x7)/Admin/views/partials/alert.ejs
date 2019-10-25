@@ -1,0 +1,23 @@
+<div class="container">
+        
+        <div
+            id="successMessage"
+            class="alert alert-success"
+            <% if (!successMsg) { %>
+                style="display:none"
+            <% } %>
+            role="alert">
+                <%= successMsg %>
+        </div>
+
+        <div
+            id="errorMessage"
+            class="alert alert-danger"
+            <% if (!errorMsg) { %>
+                style="display:none">
+            <% } %>
+            role="alert">
+                <%= errorMsg %>
+        </div>
+
+</div>
