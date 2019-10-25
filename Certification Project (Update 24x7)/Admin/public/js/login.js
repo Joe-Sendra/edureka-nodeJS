@@ -10,6 +10,8 @@ $(document).ready(()=>{
                 // Save token & id
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('id', data.id);
+                localStorage.setItem('email', data.email);
+                localStorage.setItem('name', data.name);
                 // Redirect to dashboard
                 location.href = '/admin';                
             },
