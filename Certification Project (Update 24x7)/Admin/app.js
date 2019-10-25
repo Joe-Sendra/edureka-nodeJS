@@ -40,7 +40,15 @@ app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
-app.get('/', (req, res) => res.render('index')); // Landing Page
+app.get('/', (req, res) => {
+    if (req.body.successMsg) {
+        console.log('should show successfully registered message')
+        res.render('index', {errorMsg: null, successMsg: req.body.successMsg}); // Landing Page
+    } else {
+        res.render('index', {errorMsg: null, successMsg: null}); // Landing Page
+    }
+});
+app.get('/dashboard', (req, res, next) => res.render('dashboard'));
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/users', userRoutes);
 

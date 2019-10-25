@@ -12,16 +12,16 @@ const config = require('../config');
 
 exports.login = (req, res, next) => {
     User.findOne({ email: req.body.email }, (err, user) => {
-        if (err) return res.status(500).send('Server error fetching user');
+        if (err) return res.status(500).send({errorMsg: 'Server error fetching user'});
         if(!user) {
-            return res.status(401).send('Invalid authentication credentials!');
+            return res.status(401).send({errorMsg: 'Invalid authentication credentials!'});
         } else {
             const passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
             if (!passwordIsValid) {
-                return res.status(401).send('Invalid authentication credentials!');
+                return res.status(401).send({errorMsg: 'Invalid authentication credentials!'});
             } else {
                 var token = jwt.sign({ id: user._id, email: req.body.email}, config.secret, {expiresIn: 300 });
-                res.status(200).json({token: token});
+                res.status(200).json({id: user._id, token: token});
             }
         }
     })

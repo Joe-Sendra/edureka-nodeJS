@@ -19,10 +19,15 @@ exports.addUser = (req, res, next) => {
         password: hashedPassword,
         name: req.body.name
     },(err, user)=>{
-        if (err) return res.status(500).send("Error: Can not register user.")
-        res.status(201).json({
-            message : "User successfully registered",
-            id: user._id
-        });
-    })
+        if (err) {
+            if (err.name === 'ValidationError'){
+                return res.status(500).send({errorMsg: 'Email is already registered, please log in or register a different email address.', successMsg: null});
+            } else {
+                return res.status(500).send({errorMsg: err, successMsg: null});
+            } 
+        };
+        res.status(201).send({errorMsg: null, successMsg: 'User successfully registered, please log in'});
+    });
+
 }
+    
