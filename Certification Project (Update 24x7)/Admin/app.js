@@ -30,6 +30,7 @@ app.set('view engine', 'ejs');
 app.set('views', './views');
 
 // Import Routes
+const adminRoutes = require('./routes/routeAdmin');
 const authRoutes = require('./routes/routeAuth');
 const userRoutes = require('./routes/routeUser');
 
@@ -48,7 +49,7 @@ app.get('/', (req, res) => {
         res.render('index', {errorMsg: null, successMsg: null}); // Landing Page
     }
 });
-app.get('/dashboard', (req, res, next) => res.render('dashboard'));
+app.use('/admin', adminRoutes);
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/users', userRoutes);
 
