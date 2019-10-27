@@ -14,7 +14,8 @@
         <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="navbar-nav">
             <!-- TODO: boolean for logged in or out dictates menuitems -->
-            <% include menuItemsLoggedOut %>
+            <% if (!isLoggedIn) { %><% include menuItemsLoggedOut %> <% } %>
+            <% if (isLoggedIn) { %> <% include menuItemsLoggedIn %> <% } %>
         </ul>
         </div>
     </div>

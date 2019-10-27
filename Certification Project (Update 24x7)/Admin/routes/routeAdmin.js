@@ -10,4 +10,10 @@ const router = express.Router();
 // /admin
 router.get('/', AdminController.dashboard);
 
+// /admin/newsForm
+router.get('/newsForm', checkAuth, AdminController.getNewsForm);
+
+// /admin/newsList
+router.get('/newsList', AdminController.getNewsList);
+
 module.exports = router;

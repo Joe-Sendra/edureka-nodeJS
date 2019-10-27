@@ -1,7 +1,27 @@
-<h2>Dashboard</h2>
-<p>TODO</p>
-<ul>
-    <li>add to routes and controller</li>
-    <li>add authorization middleware</li>
-    <li>include menu with logged in items</li>
-</ul>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <% include partials/head %>     
+    </head>
+    <body>
+        <% include partials/menu %>
+        <div
+            id="userInfo"
+            class="alert alert-success">
+            
+        </div>
+        <% include partials/alert %>
+        <div id="dashBody">
+            <h2>Dashboard</h2>
+            <p>TODO</p>
+            <ul>
+                <li>add functions to menu items</li>
+                <li>format menu items to look like requirements</li>
+                <li>add authorization middleware</li>
+            </ul>
+        </div>
+
+        <script type="text/javascript" src="/js/admin.js"></script>
+    </body>
+</html>
+

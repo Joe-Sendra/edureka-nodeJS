@@ -32,6 +32,7 @@ app.set('views', './views');
 // Import Routes
 const adminRoutes = require('./routes/routeAdmin');
 const authRoutes = require('./routes/routeAuth');
+const newsRoutes = require('./routes/routeNews');
 const userRoutes = require('./routes/routeUser');
 
 // Middleware for application/json
@@ -44,12 +45,13 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/', (req, res) => {
     if (req.body.successMsg) {
         console.log('should show successfully registered message')
-        res.render('index', {errorMsg: null, successMsg: req.body.successMsg}); // Landing Page
+        res.render('index', {errorMsg: null, successMsg: req.body.successMsg, isLoggedIn: false}); // Landing Page
     } else {
-        res.render('index', {errorMsg: null, successMsg: null}); // Landing Page
+        res.render('index', {errorMsg: null, successMsg: null, isLoggedIn: false}); // Landing Page
     }
 });
 app.use('/admin', adminRoutes);
+app.use('/admin/news', newsRoutes);
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/users', userRoutes);
 
