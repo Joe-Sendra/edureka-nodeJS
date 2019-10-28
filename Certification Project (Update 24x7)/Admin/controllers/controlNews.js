@@ -19,8 +19,6 @@ exports.addNews = (req, res, next) => {
     },(err, newsItem)=>{
         if (err) return res.status(500).send({errorMsg: err, successMsg: null});
         let testDate = new Date(newsItem.publishDate);
-        console.log(newsItem.publishDate, testDate, testDate.getUTCDate(), newsItem.publishDate.getUTCDate());
-        console.log(newsItem.publishDate.toUTCString(), testDate.toUTCString());
         res.status(201).send({ message: "News item created successfully", data: newsItem});
     });
 }

@@ -13,7 +13,13 @@
                     <tr id="<%= newsList[i]._id %>">
                         <td><%= newsList[i].title %></td>
                         <td><%= newsList[i].description %></td>
-                        <td><%= newsList[i].publishDate.toUTCString() %></td> <!-- TODO format date-->
+                        <%
+                            var getMonthName = function(dt) {
+                                mlist = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+                                return mlist[dt.getMonth()];
+                            }
+                        %>
+                        <td><%= newsList[i].publishDate.getUTCDate() %>, <%= getMonthName(newsList[i].publishDate) %> <%= newsList[i].publishDate.getUTCFullYear() %></td>
                         <td>
                             <button id="btnEdit<%= newsList[i]._id %>" class="btn btn-warning editNewsItem">Edit</button>
                             <button id="btnDelete<%= newsList[i]._id %>" class="btn btn-danger deleteNewsItem">Delete</button>
