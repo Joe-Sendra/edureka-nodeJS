@@ -20,7 +20,7 @@ exports.login = (req, res, next) => {
             if (!passwordIsValid) {
                 return res.status(401).send({errorMsg: 'Invalid authentication credentials!'});
             } else {
-                var token = jwt.sign({ id: user._id, email: req.body.email, name: req.body.name}, config.secret, {expiresIn: 300 });
+                var token = jwt.sign({ id: user._id, email: req.body.email, name: req.body.name}, config.secret, {expiresIn: 900 });
                 res.status(200).json({id: user._id, email: user.email, name: user.name, token: token});
             }
         }

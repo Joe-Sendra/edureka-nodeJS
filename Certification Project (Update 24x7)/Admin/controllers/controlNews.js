@@ -24,18 +24,6 @@ exports.addNews = (req, res, next) => {
     });
 }
 
-// TODO refactor this into /admin route which will consume /api/v1/news route
-exports.showNews = (req, res, next) => {
-    try {
-        News.find({}, (err, newsList)=>{
-            if (err) return res.status(500).send("Can not fetch news");
-            res.status(200).render('newsList.ejs', {newsList: newsList, errorMsg: null, successMsg: null});
-        });   
-    } catch (error) {
-        console.log(error);
-    }
-};
-
 exports.deleteNewsById = (req, res, next) => {
     try {
         News.deleteOne({_id: req.params.newsId}, (err, result)=>{

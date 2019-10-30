@@ -6,7 +6,7 @@ $(document).ready(() => {
 $('#btnNewsForm').on('click', (e) => {
     clearMessages();
     $.ajax({
-        url: '/admin/newsForm',
+        url: '/admin/news/add',
         type: 'GET',
         dataType: "html",
         headers: {Authorization: 'Bearer ' + localStorage.getItem('token')},
@@ -24,10 +24,10 @@ $('#btnNewsForm').on('click', (e) => {
 $('#btnEditNews').on('click', (e) => {
     clearMessages();
     $.ajax({
-        url: '/admin/newsList',
+        url: '/admin/news',
         type: 'GET',
         dataType: "html",
-        // headers: {Authorization: 'Bearer ' + localStorage.getItem('token')},
+        headers: {Authorization: 'Bearer ' + localStorage.getItem('token')},
         success: (formHtml) => {$('#dashBody').html(formHtml)},
         error: (err) => {
             if (err.status === 401) {

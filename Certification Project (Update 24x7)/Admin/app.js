@@ -50,9 +50,10 @@ app.get('/', (req, res) => {
         res.render('index', {errorMsg: null, successMsg: null, isLoggedIn: false}); // Landing Page
     }
 });
+
 app.use('/admin', adminRoutes);
-app.use('/admin/news', newsRoutes);
 app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/news', newsRoutes);
 app.use('/api/v1/users', userRoutes);
 
 app.listen(port, ()=>console.log(`Server running on port ${port}`));

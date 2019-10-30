@@ -18,8 +18,9 @@
                                 mlist = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
                                 return mlist[dt.getMonth()];
                             }
+                            var publishDate = new Date(newsList[i].publishDate);
                         %>
-                        <td><%= newsList[i].publishDate.getUTCDate() %>, <%= getMonthName(newsList[i].publishDate) %> <%= newsList[i].publishDate.getUTCFullYear() %></td>
+                        <td><%= publishDate.getUTCDate() %>, <%= getMonthName(publishDate) %> <%= publishDate.getUTCFullYear() %></td>
                         <td>
                             <button id="btnEdit<%= newsList[i]._id %>" class="btn btn-warning editNewsItem">Edit</button>
                             <button id="btnDelete<%= newsList[i]._id %>" class="btn btn-danger deleteNewsItem">Delete</button>

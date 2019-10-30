@@ -3,7 +3,7 @@ $("#addNewsForm").submit((event)=>{
     var form_data = $(event.target).serialize();
     $.ajax({
         type: 'POST',
-        url: '/admin/news',
+        url: '/api/v1/news',
         data: form_data,
         headers: {Authorization: 'Bearer ' + localStorage.getItem('token')},
         success: (data)=>{

@@ -12,8 +12,10 @@ $(document).ready(()=>{
                 localStorage.setItem('id', data.id);
                 localStorage.setItem('email', data.email);
                 localStorage.setItem('name', data.name);
+
                 // Redirect to dashboard
-                location.href = '/admin';                
+                var redirectURL = '/admin?token=' + localStorage.getItem('token');
+                location.href = redirectURL;                
             },
             error: (response)=>{
                 console.log(response.responseJSON);

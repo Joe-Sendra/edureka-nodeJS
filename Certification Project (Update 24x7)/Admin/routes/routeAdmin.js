@@ -8,12 +8,12 @@ const checkAuth = require('../middleware/check-auth');
 const router = express.Router();
 
 // /admin
-router.get('/', AdminController.dashboard);
+router.get('/', checkAuth, AdminController.dashboard);
 
-// /admin/newsForm
-router.get('/newsForm', checkAuth, AdminController.getNewsForm);
+// /admin/news
+router.get('/news', checkAuth, AdminController.getNewsList);
 
-// /admin/newsList
-router.get('/newsList', AdminController.getNewsList);
+// // /admin/newsForm
+router.get('/news/add', checkAuth, AdminController.getNewsForm);
 
 module.exports = router;

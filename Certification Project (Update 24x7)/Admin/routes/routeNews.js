@@ -15,7 +15,4 @@ router.post('/', checkAuth, NewsController.addNews);
 router.get('/:newsId', checkAuth, NewsController.getNewsById);
 router.delete('/:newsId', checkAuth, NewsController.deleteNewsById);
 
-// refactor this into /admin path
-// router.get('/list', NewsController.showNews);
-
 module.exports = router;
