@@ -10,6 +10,7 @@ exports.getAllNews = (req, res, next) => {
 }
 
 exports.addNews = (req, res, next) => {  
+    console.log(req.body);
     News.create({
         title: req.body.title,
         description: req.body.description,
@@ -23,6 +24,7 @@ exports.addNews = (req, res, next) => {
     });
 }
 
+// TODO refactor this into /admin route which will consume /api/v1/news route
 exports.showNews = (req, res, next) => {
     try {
         News.find({}, (err, newsList)=>{
@@ -36,12 +38,27 @@ exports.showNews = (req, res, next) => {
 
 exports.deleteNewsById = (req, res, next) => {
     try {
-        News.deleteOne({_id: req.body.newsId}, (err, result)=>{
-            if (err) console.log(err);
+        News.deleteOne({_id: req.params.newsId}, (err, result)=>{
+            if (err) return res.status(500).send("Server Error, Can not delete news");
             console.log(result);
             if (result.deletedCount === 1) {
-                res.status(200);
+                res.status(200).send("Successfully deleted news");
+            } else {
+                res.status(500).send("Can not delete requested news _id");
             }
+
+        });
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+exports.getNewsById = (req, res, next) => {
+    try {
+        News.findById(req.params.newsId, (err, result) => {
+            if (err) return res.status(500).send("Can not fetch news");
+            console.log(result);
+            res.status(200).send(result);
         });
     } catch (error) {
         console.log(error);

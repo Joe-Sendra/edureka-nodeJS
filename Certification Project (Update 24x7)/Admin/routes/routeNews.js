@@ -7,11 +7,15 @@ const checkAuth = require('../middleware/check-auth');
 
 const router = express.Router();
 
-// /admin/news
-router.get('/', NewsController.getAllNews);
+// /api/v1/news
+router.get('/', checkAuth, NewsController.getAllNews);
 router.post('/', checkAuth, NewsController.addNews);
-router.delete('/', checkAuth, NewsController.deleteNewsById);
 
-router.get('/list', NewsController.showNews);
+// /api/v1/news:Id
+router.get('/:newsId', checkAuth, NewsController.getNewsById);
+router.delete('/:newsId', checkAuth, NewsController.deleteNewsById);
+
+// refactor this into /admin path
+// router.get('/list', NewsController.showNews);
 
 module.exports = router;
