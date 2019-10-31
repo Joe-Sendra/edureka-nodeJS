@@ -40,7 +40,9 @@ $('#btnEditNews').on('click', (e) => {
 });
 
 $('#btnLogout').on('click', (e) => {
-
+    localStorage.clear();
+    location.href = '/';
+    
 });
 
 function clearMessages(){
