@@ -1,0 +1,35 @@
+<div class="container">
+    <h4>News List</h4>
+    <table id="newsListTable" class="table table-hover table-striped">
+        <thead>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Published At</th>
+            <th>Edit/Delete</th>
+        </thead>
+        <tbody>
+            <% if (newsList){ %>
+                <% for(var i=0; i<newsList.length; i++) {%>
+                    <tr id="<%= newsList[i]._id %>">
+                        <td><%= newsList[i].title %></td>
+                        <td><%= newsList[i].description %></td>
+                        <%
+                            var getMonthName = function(dt) {
+                                mlist = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+                                return mlist[dt.getMonth()];
+                            }
+                            var publishDate = new Date(newsList[i].publishDate);
+                        %>
+                        <td><%= publishDate.getUTCDate() %>, <%= getMonthName(publishDate) %> <%= publishDate.getUTCFullYear() %></td>
+                        <td>
+                            <button id="btnEdit<%= newsList[i]._id %>" class="btn btn-warning editNewsItem">Edit</button>
+                            <button id="btnDelete<%= newsList[i]._id %>" class="btn btn-danger deleteNewsItem">Delete</button>
+                        </td>
+                    </tr>                            
+                <% } %>
+            <% } %>
+        </tbody>
+    </table>
+
+</div>
+<script type="text/javascript" src="/js/newsList.js"></script>
