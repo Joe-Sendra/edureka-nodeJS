@@ -5,9 +5,9 @@ $(document).ready(()=>{
         newsId = $('#'+event.currentTarget.id).parents()[1].id
         $.ajax({
             type: 'DELETE',
-            url: '/admin/news',
+            url: '/api/v1/news/' + newsId,
             headers: {Authorization: 'Bearer ' + localStorage.getItem('token')},
-            data: {newsId: newsId},
+            // data: {newsId: newsId},
             error: (err) => {
                 if (err.status === 401) {
                     displayErrorMessage('You are not authorized, please try logging in.')
@@ -17,10 +17,10 @@ $(document).ready(()=>{
             }
         }).done(
             $.ajax({
-                url: '/admin/newsList',
+                url: '/admin/news',
                 type: 'GET',
                 dataType: "html",
-                // headers: {Authorization: 'Bearer ' + localStorage.getItem('token')},
+                headers: {Authorization: 'Bearer ' + localStorage.getItem('token')},
                 success: (formHtml) => {$('#dashBody').html(formHtml)},
                 error: (err) => {
                     if (err.status === 401) {
