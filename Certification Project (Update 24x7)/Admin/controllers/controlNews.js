@@ -28,7 +28,6 @@ exports.deleteNewsById = (req, res, next) => {
     try {
         News.deleteOne({_id: req.params.newsId}, (err, result)=>{
             if (err) return res.status(500).send("Server Error, Can not delete news");
-            console.log(result);
             if (result.deletedCount === 1) {
                 res.status(200).send("Successfully deleted news");
             } else {
