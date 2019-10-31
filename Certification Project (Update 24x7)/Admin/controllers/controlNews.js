@@ -45,10 +45,27 @@ exports.getNewsById = (req, res, next) => {
     try {
         News.findById(req.params.newsId, (err, result) => {
             if (err) return res.status(500).send("Can not fetch news");
-            console.log(result);
             res.status(200).send(result);
         });
     } catch (error) {
         console.log(error);
     }
+};
+
+exports.updateNews = (req, res, next) => {
+    if (req.params.newsId.match(/^[0-9a-fA-F]{24}$/)) {
+        try {
+            News.updateOne({ _id: req.params.newsId}, {$set: req.body}).then(result => {
+                if (result.n > 0) {
+                  res.status(200).send({message: "Changes have been saved"});
+                } else {
+                  res.status(401).send({message: "Changes could not be saved"});
+                }
+            });    
+        } catch (err) {
+            res.status(500).send({message: "Changes could not be saved due to a server error.", serverError: err});
+        } 
+    } else {
+        res.status(401).send({message: 'Not a valid news id'});
+    }    
 };

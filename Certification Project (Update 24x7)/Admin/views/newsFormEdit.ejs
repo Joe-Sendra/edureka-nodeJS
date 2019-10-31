@@ -1,0 +1,31 @@
+<div class="container">
+    <h4>Edit News</h4>
+    <form id="editNewsForm">
+        <input type="hidden" id="_id" name="_id" value="<%= news._id %>">
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" class="form-control" id="title" name="title" required value="<%= news.title %>"> 
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <input type="text" class="form-control" id="description" name="description" required value="<%= news.description %>">
+        </div>
+        <div class="form-group">
+            <label for="url">Url:</label>
+            <input type="text" class="form-control" id="url" name="url" required value="<%= news.url %>">
+        </div>
+        <div class="form-group">
+            <label for="imageUrl">Url To Image:</label>
+            <input type="text" class="form-control" id="imageUrl" name="imageUrl" required value="<%= news.imageUrl %>">
+        </div>
+        <div class="form-group">
+            <label for="publishDate">Published At:</label>
+            <input type="date" class="form-control" id="publishDate" name="publishDate" required value="<%= news.publishDate%>"> <!-- TODO fix date -->
+        </div>
+        <div class="text-center">
+            <button type="submit" id="btnAddNews" class="btn btn-info" role="button">Save</button>
+            <button type="reset" id="btnReset" class="btn btn-warning" role="button">RESET</button>
+        </div>                    
+    </form>
+</div>
+<script type="text/javascript" src="/js/editNews.js"></script>
