@@ -10,7 +10,6 @@ exports.getAllNews = (req, res, next) => {
 }
 
 exports.addNews = (req, res, next) => {  
-    console.log(req.body);
     News.create({
         title: req.body.title,
         description: req.body.description,
