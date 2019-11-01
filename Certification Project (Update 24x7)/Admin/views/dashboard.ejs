@@ -5,22 +5,18 @@
     </head>
     <body>
         <% include partials/menu %>
-        <div
-            id="userInfo"
-            class="alert alert-success">
-            
+        <div class="container">
+            <div
+                id="userInfo"
+                class="alert alert-success">
+                
+            </div>
+            <% include partials/alert %>
+            <div id="dashBody">
+                <!-- Load add news form by default, this area gets replaced when menu items are selected -->
+                <% include newsForm %>
+            </div>
         </div>
-        <% include partials/alert %>
-        <div id="dashBody">
-            <h2>Dashboard</h2>
-            <p>TODO</p>
-            <ul>
-                <li>add functions to menu items</li>
-                <li>format menu items to look like requirements</li>
-                <li>add authorization middleware</li>
-            </ul>
-        </div>
-
         <script type="text/javascript" src="/js/admin.js"></script>
     </body>
 </html>
