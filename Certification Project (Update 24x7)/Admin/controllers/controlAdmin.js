@@ -1,5 +1,8 @@
 const fetch = require('node-fetch');
 
+// Has environment variables
+const config = require('../config');
+
 exports.dashboard = (req, res, next) => {
     res.status(200).render('dashboard',{errorMsg: null, successMsg: null, isLoggedIn: true});
 }
@@ -10,8 +13,8 @@ exports.getNewsForm = (req, res, next) => {
 
 exports.getNewsList = (req, res, next) => {
     try {
-        // TODO remove localhost:3000 and replace with env variable
-        fetch('http://localhost:3000/api/v1/news', {
+        const API_URL = `${config.api_host}:${config.port}/api/v1/news`;
+        fetch(API_URL, {
             headers: {"authorization": "Bearer " + req.userData.token}
         })
         .then(res => {
@@ -33,7 +36,8 @@ exports.getNewsList = (req, res, next) => {
 
 exports.getNewsEdit = (req, res, next) => {
     try {
-        fetch('http://localhost:3000/api/v1/news/' + req.body.newsId, {
+        const API_URL = `${config.api_host}:${config.port}/api/v1/news/`;
+        fetch(API_URL + req.body.newsId, {
             headers: {"authorization": "Bearer " + req.userData.token}
         })
         .then(res => {
