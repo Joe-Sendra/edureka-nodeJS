@@ -3,34 +3,10 @@
 <div>Temperature</div>
 <div>City Name</div>
 <div>
-    <input onchange="getLocation()" type="checkbox" id="allowLocationForWeather">Allow your location for weather
-    <!-- <button onclick="getLocation()">Allow your location for weather</button> -->
+  <input
+    onchange="getLocation()"
+    type="checkbox"
+    id="allowLocationForWeather"
+  />Allow your location for weather
 </div>
-
-
-
-<!-- TODO move script to weather.js file -->
-<script>
-/* Does your browser support geolocation? */
-function getLocation() {
-    if (document.getElementById("allowLocationForWeather").checked === true){
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    console.log(position.coords);
-                },
-                (positionError) =>{
-                    console.log(positionError);
-                },
-                {enableHighAccuracy:true}
-            );
-        } else { 
-            console.log("Geolocation is not supported by this browser.");
-        }
-    } else {
-        // TODO show default weather
-        console.log("user did not check box to allow browser to use location");
-    }
-}
-
-</script>
+<script type="text/javascript" src="/js/weather.js"></script>
