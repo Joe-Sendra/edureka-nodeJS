@@ -30,9 +30,10 @@ app.use(bodyParser.json());
 // Middleware for URL encoded
 app.use(express.urlencoded({ extended: true }));
 
-// TODO Routes
-app.get('/', (req, res) => {
-    res.render('index');
-});
+// Routes
+app.get('/', (req, res) => res.render('index')); // Homepage
+app.get('/sports', (req, res) => res.render('sports')); // Sports Page
+app.get('/contact', (req, res) => res.render('contact')); // Contact Us Page
+app.get('/about', (req, res) => res.render('about')); // About Us Page
 
 app.listen(port, ()=>console.log(`Server running on port ${port}`));
