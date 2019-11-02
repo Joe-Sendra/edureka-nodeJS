@@ -14,7 +14,16 @@ function getLocation() {
                         },
                         body: JSON.stringify(data)
                     };
-                    fetch('/api/v1/weather',options).then(response => response.json()).then(results => console.log(results));
+                    fetch('/api/v1/weather',options)
+                    .then(response => response.json())
+                    .then(results => {
+                        document.getElementById("locationPermission").style.display = "none"
+                        document.getElementById("weather").innerText = results.weatherData.weather;
+                        document.getElementById("weatherIcon").src = results.weatherData.iconUrl;
+                        document.getElementById("temperature").innerText = results.weatherData.temperature;
+                        document.getElementById("weatherCity").innerText = results.weatherData.city;
+                    })
+                    .catch(err => console.log(err));
                 },
                 (positionError) =>{
                     console.log(positionError);
