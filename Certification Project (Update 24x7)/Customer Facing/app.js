@@ -47,7 +47,6 @@ app.post('/api/v1/weather', (req, res) => {
         fetch(url)
             .then(response => response.json())
             .then(results => {
-                console.log(results);
                 const weatherData = {
                     weather: results.weather[0].description,
                     iconUrl: `http://openweathermap.org/img/wn/${results.weather[0].icon}@2x.png`,
