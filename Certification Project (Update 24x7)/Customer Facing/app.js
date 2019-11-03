@@ -3,6 +3,8 @@
 const express = require('express');
 const app = express();
 
+const chatServer = require('./chatServer');
+
 //Include node-fetch used to call api
 const fetch = require('node-fetch');
 
@@ -66,4 +68,4 @@ app.post('/api/v1/weather', (req, res) => {
 });
 
 
-app.listen(port, ()=>console.log(`Server running on port ${port}`));
+app.listen(port, ()=>console.log(`Main server running on port ${port}`));
