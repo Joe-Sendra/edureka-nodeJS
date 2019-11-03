@@ -5,17 +5,17 @@
     </head>
     <body>
         <div><% include partials/header %></div><hr>
-        <div class="container">
-            <div><% include partials/weather %></div><hr>
-            <div><% include partials/imageGallery %></div><hr>
-            <div><% include partials/news %></div><hr>
-            <div>HomePage works! (story related to the news goes here if not adding another partial view)</div><hr>
+
+            <div class="container"><% include partials/weather %></div><hr>
+            <div class="imageGallery"><% include partials/imageGallery %></div><hr>
+            <div class="container"><% include partials/news %></div><hr>
+            <div class="container">HomePage works! (story related to the news goes here if not adding another partial view)</div><hr>
             <div class="chatArea">
                 <% include partials/chat %>
             </div>
             <footer>
                 <div><% include partials/footer %></div>
             </footer>
-        </div>
+
     </body>
 </html>
