@@ -9,7 +9,6 @@
         var socket = io.connect('http://localhost:3050/'); // TODO getserver from config
         $('#btnSetUsername').on('click', (e)=>{
             e.preventDefault(); // prevents page reloading
-            console.log(e);
             socket.emit('set username', $('#setUsernameTxt').val());
         });
         $('#btnSendMessage').on('click', (e)=>{
