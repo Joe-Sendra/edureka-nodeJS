@@ -28,6 +28,7 @@ app.set('view engine', 'ejs');
 app.set('views', './views');
 
 // TODO Import Routes
+const emailRoutes = require('./routes/email');
 
 // Middleware for application/json
 app.use(bodyParser.json());
@@ -38,8 +39,9 @@ app.use(express.urlencoded({ extended: true }));
 // Routes
 app.get('/', (req, res) => res.render('index')); // Homepage
 app.get('/sports', (req, res) => res.render('sports')); // Sports Page
-app.get('/contact', (req, res) => res.render('contact')); // Contact Us Page
+app.get('/contact', (req, res) => res.render('contact',{ errorMsg: null, successMsg: null })); // Contact Us Page
 app.get('/about', (req, res) => res.render('about')); // About Us Page
+app.use('/sendOrderEmail', emailRoutes);
 
 // TODO move to seperate route file
 app.post('/api/v1/weather', (req, res) => {
@@ -66,6 +68,5 @@ app.post('/api/v1/weather', (req, res) => {
         res.status(400).send({message: 'Not a valid lat, lon provided'});
     }
 });
-
 
 app.listen(port, ()=>console.log(`Main server running on port ${port}`));

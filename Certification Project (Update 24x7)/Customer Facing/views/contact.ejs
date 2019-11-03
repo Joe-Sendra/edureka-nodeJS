@@ -5,9 +5,27 @@
     </head>
     <body>
         <div><% include partials/header %></div><hr>
-        <div>contact works!</div>
+        <div><% include partials/alert %></div>
+        <div class="container">
+            <h4>Contact Us</h4>
+            <form id="contactUsForm">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter Email" name="email" required/>
+                </div>
+                <div class="form-group">
+                    <label for="query">Query:</label>
+                    <textarea class="form-control" id="query" rows="10" maxlength="500" placeholder="Please describe your query" name="query" required></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit" id="btnSubmitQuery" class="btn btn-info" role="button">SUBMIT</button>
+                    <button type="reset" id="btnResetQuery" class="btn btn-warning" role="button">RESET</button>
+                </div>                
+            </form>
+        </div>
         <footer>
             <div><% include partials/footer %></div>
         </footer>
+        <script type="text/javascript" src="js/contact.js"></script>
     </body>
 </html>
