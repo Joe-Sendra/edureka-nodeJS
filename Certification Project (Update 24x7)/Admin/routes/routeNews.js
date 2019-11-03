@@ -8,7 +8,7 @@ const checkAuth = require('../middleware/check-auth');
 const router = express.Router();
 
 // /api/v1/news
-router.get('/', checkAuth, NewsController.getAllNews);
+router.get('/', NewsController.getAllNews);
 router.post('/', checkAuth, NewsController.addNews);
 
 // /api/v1/news/:newsId
