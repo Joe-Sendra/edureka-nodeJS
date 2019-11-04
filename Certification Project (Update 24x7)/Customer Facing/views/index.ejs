@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <% include partials/head %>
+    </head>
+    <body>
+        <% include partials/header %>
+
+            <div class="container weather"><% include partials/weather %></div>
+            <div class="imageGallery"><% include partials/imageGallery %></div>
+            <div><% include partials/news %></div>
+            <div id="mainNews" class="container mainNews">
+                <div class="card">
+                    <img id="mainNewsImg" src="" class="card-img-top">
+                    <div class="card-body">
+                        <h5 id="mainNewsTitle" class="card-title"></h5>
+                        <p id="mainNewsDescription" class="card-text"></p>
+                    </div>
+                    <div class="card-body">
+                        <a id="mainNewsLink" href="#" class="card-link" target="_blank">View article</a>
+                    </div>
+                </div>                
+            </div>
+            <div class="chatArea">
+                <% include partials/chat %>
+            </div>
+            <footer>
+                <div><% include partials/footer %></div>
+            </footer>
+
+    </body>
+</html>
+<script>
+    $(document).ready(() => {
+        $.ajax({
+            type: 'GET',
+            url: '/api/v1/news',
+            success: apiResponse => {
+                if (apiResponse.news[3]) {
+                    document.getElementById("mainNewsImg").src = apiResponse.news[3].imageUrl;
+                    document.getElementById("mainNewsTitle").innerText = apiResponse.news[3].title;
+                    document.getElementById("mainNewsDescription").innerText = apiResponse.news[3].description;
+                    document.getElementById("mainNewsLink").href = apiResponse.news[3].url;
+                }
+            },
+            error: {}
+        });
+    });
+</script>

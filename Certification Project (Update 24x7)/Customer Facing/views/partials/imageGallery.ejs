@@ -1,0 +1,25 @@
+<div id="slider">
+    <figure>
+        <img id="newsImg1" src="" alt>
+        <img id="newsImg2" src="" alt>
+        <img id="newsImg3" src="" alt>
+    </figure>
+</div>
+<script>
+    $(document).ready(() => {
+        $.ajax({
+            type: 'GET',
+            url: '/api/v1/news',
+            success: apiResponse => {
+                if (apiResponse.news) {
+                    let i = 0;
+                    apiResponse.news.forEach(newsArticle => {
+                        i++;
+                        document.getElementById("newsImg"+i).src = newsArticle.imageUrl;
+                    });
+                }
+            },
+            error: {}
+        });
+    });
+</script>
