@@ -31,7 +31,7 @@
         socket.on('chat message', (data)=>{
             $('#messages').append(
                 $('<li>').html(`<b>${data.stamp}</b> ${data.message}`)
-            );
+            );          
         });
     });
 </script> 
