@@ -1,4 +1,3 @@
-<!-- TODO replace with news images -->
 <div id="slider">
     <figure>
         <img id="newsImg1" src="" alt>
@@ -17,8 +16,6 @@
                     apiResponse.news.forEach(newsArticle => {
                         i++;
                         document.getElementById("newsImg"+i).src = newsArticle.imageUrl;
-                        // console.log(newsArticle);
-                        // console.log(newsArticle.url, newsArticle.imageUrl);
                     });
                 }
             },

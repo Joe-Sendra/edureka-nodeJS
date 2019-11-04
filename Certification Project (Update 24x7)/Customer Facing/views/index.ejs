@@ -8,8 +8,19 @@
 
             <div class="container"><% include partials/weather %></div><hr>
             <div class="imageGallery"><% include partials/imageGallery %></div><hr>
-            <div class="container"><% include partials/news %></div><hr>
-            <div class="container">HomePage works! (story related to the news goes here if not adding another partial view)</div><hr>
+            <div><% include partials/news %></div><hr>
+            <div id="mainNews" class="container mainNews">
+                <div class="card">
+                    <img id="mainNewsImg" src="" class="card-img-top">
+                    <div class="card-body">
+                        <h5 id="mainNewsTitle" class="card-title"></h5>
+                        <p id="mainNewsDescription" class="card-text"></p>
+                    </div>
+                    <div class="card-body">
+                        <a id="mainNewsLink" href="#" class="card-link" target="_blank">View article</a>
+                    </div>
+                </div>                
+            </div>
             <div class="chatArea">
                 <% include partials/chat %>
             </div>
@@ -19,3 +30,20 @@
 
     </body>
 </html>
+<script>
+    $(document).ready(() => {
+        $.ajax({
+            type: 'GET',
+            url: '/api/v1/news',
+            success: apiResponse => {
+                if (apiResponse.news[3]) {
+                    document.getElementById("mainNewsImg").src = apiResponse.news[3].imageUrl;
+                    document.getElementById("mainNewsTitle").innerText = apiResponse.news[3].title;
+                    document.getElementById("mainNewsDescription").innerText = apiResponse.news[3].description;
+                    document.getElementById("mainNewsLink").href = apiResponse.news[3].url;
+                }
+            },
+            error: {}
+        });
+    });
+</script>

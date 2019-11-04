@@ -39,7 +39,7 @@ exports.getNews = (req, res, next) => {
                 b = new Date(b.publishDate);
                 return a>b ? -1 : a<b ? 1 : 0;
             });
-            let top3news = allNews.splice(0,3);
+            let top3news = allNews.splice(0,4);
             res.status(200).send({status: "success", news: top3news});
         })
         .catch(err => {

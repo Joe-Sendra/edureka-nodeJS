@@ -63,6 +63,11 @@ div#slider figure {
     z-index: 9;
   }
 
+.mainNews {
+    margin-top: 50px;
+    margin-bottom: 200px;
+}
+
 #messages {
     list-style-type: none;
     margin: 0;

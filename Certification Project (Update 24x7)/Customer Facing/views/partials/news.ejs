@@ -1,1 +1,53 @@
-news works!
+<div class="row">
+    <div class="card col-md-4">
+        <img id="newsCardImg1" src="" class="card-img-top">
+        <div class="card-body">
+            <h5 id="newsTitle1" class="card-title"></h5>
+            <p id="newsDescription1" class="card-text"></p>
+        </div>
+        <div class="card-body">
+            <a id="newsLink1" href="#" class="card-link" target="_blank">View article</a>
+        </div>
+    </div>
+    <div class="card col-md-4">
+        <img id="newsCardImg2" src="" class="card-img-top">
+        <div class="card-body">
+            <h5 id="newsTitle2" class="card-title"></h5>
+            <p id="newsDescription2" class="card-text"></p>
+        </div>
+        <div class="card-body">
+            <a id="newsLink2" href="#" class="card-link" target="_blank">View article</a>
+        </div>
+    </div>
+    <div class="card col-md-4">
+        <img id="newsCardImg3" src="" class="card-img-top">
+        <div class="card-body">
+            <h5 id="newsTitle3" class="card-title"></h5>
+            <p id="newsDescription3" class="card-text"></p>
+        </div>
+        <div class="card-body">
+            <a id="newsLink3" href="#" class="card-link" target="_blank">View article</a>
+        </div>
+    </div>
+</div>
+<script>
+        $(document).ready(() => {
+            $.ajax({
+                type: 'GET',
+                url: '/api/v1/news',
+                success: apiResponse => {
+                    if (apiResponse.news) {
+                        let i = 0;
+                        apiResponse.news.forEach(newsArticle => {
+                            i++;
+                            document.getElementById("newsCardImg"+i).src = newsArticle.imageUrl;
+                            document.getElementById("newsTitle"+i).innerText = newsArticle.title;
+                            document.getElementById("newsDescription"+i).innerText = newsArticle.description;
+                            document.getElementById("newsLink"+i).href = newsArticle.url;
+                        });
+                    }
+                },
+                error: {}
+            });
+        });
+    </script>
