@@ -33,9 +33,14 @@ exports.getNews = (req, res, next) => {
     fetch(url)
         .then(response => response.json())
         .then(results => {
-            console.log(results);
-            // TODO get news and respond with latest 3
-            res.status(200).send({status: "success", news: results.newsData});
+            let allNews = results.newsData;
+            allNews.sort((a, b) => {
+                a = new Date(a.publishDate);
+                b = new Date(b.publishDate);
+                return a>b ? -1 : a<b ? 1 : 0;
+            });
+            let top3news = allNews.splice(0,3);
+            res.status(200).send({status: "success", news: top3news});
         })
         .catch(err => {
             res.status(500).send({status: "fail", message : "Server error fetching news"});
